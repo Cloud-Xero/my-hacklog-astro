@@ -1,0 +1,31 @@
+---
+import "@styles/config.css";
+import "@styles/default.css";
+import "@styles/layout.css";
+
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Meta from "@components/Meta.astro";
+import Container from "@components/Container.astro";
+
+import { siteMeta } from "@lib/constants";
+const { SITE_TITLE, SITE_DESCRIPTION } = siteMeta;
+
+const props = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <Meta {...props} />
+  </head>
+  <body>
+    <Container>
+      <Header title={SITE_TITLE} />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </Container>
+  </body>
+</html>
