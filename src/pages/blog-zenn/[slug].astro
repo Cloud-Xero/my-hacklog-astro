@@ -3,11 +3,11 @@ import "zenn-content-css";
 
 import Custompicture from "@components/custompicture.astro";
 import Pagination from "@components/pagination.astro";
-import Layout from "@layouts/layout.astro";
+import Layout from "@layouts/Layout.astro";
 import { categories } from "@lib/constants";
 import imgToPicture from "@lib/imgToPicture";
 import { getCollection } from "astro:content";
-import { compareDesc,format, formatISO } from "date-fns";
+import { compareDesc, format, formatISO } from "date-fns";
 import markdownToHtml from "zenn-markdown-html";
 
 export async function getStaticPaths({}) {
