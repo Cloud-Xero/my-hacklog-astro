@@ -35,5 +35,9 @@
     "unist-util-visit": "^4.1.2",
     "zenn-content-css": "^0.1.141",
     "zenn-markdown-html": "^0.1.141"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.1"
   }
 }

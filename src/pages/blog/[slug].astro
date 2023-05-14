@@ -71,7 +71,9 @@ const pubDateJA = format(pubDate, "yyyy年MM月dd日");
               (cat) => cat.categorySlug === categorySlug
             )?.categoryName;
             return (
-              <a rel="prefetch" href={`/blog/category/${categorySlug}`}>{categoryName}</a>
+              <a rel="prefetch" href={`/blog/category/${categorySlug}`}>
+                {categoryName}
+              </a>
             );
           })
         }

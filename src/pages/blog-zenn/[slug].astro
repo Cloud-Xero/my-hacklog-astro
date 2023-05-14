@@ -79,7 +79,9 @@ const convertedHTML = imgToPicture(html);
               (cat) => cat.categorySlug === categorySlug
             )?.categoryName;
             return (
-              <a rel="prefetch" href={`/blog/category/${categorySlug}`}>{categoryName}</a>
+              <a rel="prefetch" href={`/blog/category/${categorySlug}`}>
+                {categoryName}
+              </a>
             );
           })
         }
