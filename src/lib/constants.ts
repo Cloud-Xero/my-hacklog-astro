@@ -1,9 +1,14 @@
 export const siteMeta = {
-  SITE_TITLE: "My personal website.",
-  SITE_DESCRIPTION: "Welcome to my website!",
-  SITE_URL: "https://******",
-  SITE_TYPE: "website",
-  SITE_LOCALE: "ja_JP",
-  SITE_ICON: "/favicon.svg",
-  SITE_IMG: "/ogp.jpg",
+  siteTitle: "Tech Flow.",
+  siteDesc: "Tech Flow の技術ブログサイト",
+  siteUrl: "https://astro-test-blog-peach.vercel.app/",
+  siteType: "website",
+  siteLocale: "ja_JP",
+  siteIcon: "/favicon.svg",
+  siteImg: "/ogp.jpg",
 };
+
+export const categories = [
+  { categoryName: "Python", categorySlug: "python" },
+  { categoryName: "JavaScript", categorySlug: "javascript" },
+];

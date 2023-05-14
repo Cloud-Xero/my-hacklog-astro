@@ -1,21 +1,21 @@
-import { defineCollection, z } from 'astro:content';
+import { z, defineCollection } from "astro:content";
+import { zonedTimeToUtc } from "date-fns-tz";
 
-const blog = defineCollection({
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z
-			.string()
-			.or(z.date())
-			.transform((val) => new Date(val)),
-		updatedDate: z
-			.string()
-			.optional()
-			.transform((str) => (str ? new Date(str) : undefined)),
-		heroImage: z.string().optional(),
-	}),
+// スキーマを定義
+const blogCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    pubDate: z
+      .string()
+      .transform((str: string) => zonedTimeToUtc(str, "Asia/Tokyo")),
+    image: z.string(),
+    category: z.array(z.string()),
+    description: z.string(),
+  }),
 });
 
-export const collections = { blog };
+// 定義したスキーマを collections としてエクスポート
+export const collections = {
+  // src/content に用意したコレクションのスキーマとして指定（フォルダ名とフィールド名を一致させる必要がある）
+  blog: blogCollection,
+};

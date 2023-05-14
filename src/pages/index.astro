@@ -1,17 +1,11 @@
 ---
-// microCMS呼び出し
-import Layout from "@layouts/Layout.astro";
-import { getBlogs } from "@lib/microcms";
-const response = await getBlogs({ fields: ["id", "title"] });
+import Layout from "@layouts/layout.astro";
 ---
 
 <Layout>
-  <h1>🧑‍🚀 Hello, Astronaut!</h1>
-  <p>
-    {
-      response.contents.map((content: any) => (
-        <a href={content.id}>{content.title}</a>
-      ))
-    }
-  </p>
+  <h1
+    class="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-rose-500 leading-normal"
+  >
+    H A C K L O G .
+  </h1>
 </Layout>

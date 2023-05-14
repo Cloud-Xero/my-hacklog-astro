@@ -3,28 +3,26 @@ import "@styles/config.css";
 import "@styles/default.css";
 import "@styles/layout.css";
 
-import Footer from "@components/Footer.astro";
-import Header from "@components/Header.astro";
-import Meta from "@components/Meta.astro";
-import Container from "@components/Container.astro";
-
-import { siteMeta } from "@lib/constants";
-const { SITE_TITLE } = siteMeta;
+import Footer from "@components/footer.astro";
+import Header from "@components/header.astro";
+import Container from "@components/container.astro";
+import Meta from "@components/meta.astro";
 
 const props = Astro.props;
 ---
 
-<!DOCTYPE html>
 <html lang="ja">
   <head>
     <Meta {...props} />
   </head>
   <body>
-    <Container>
-      <Header title={SITE_TITLE} />
-      <main>
-        <slot />
-      </main>
+    <Container maxWidth="900px">
+      <Header />
+      <Container>
+        <main>
+          <slot />
+        </main>
+      </Container>
       <Footer />
     </Container>
   </body>

@@ -1,26 +1,18 @@
 ---
 import { Icon } from "astro-icon";
-const today = new Date();
 ---
 
 <footer>
   <ul>
     <li>
-      <a href="https://twitter.com/">
+      <a rel="prefetch" href="https://twitter.com/">
         <Icon name="fa-brands:twitter" role="img" aria-label="Twitter" />
       </a>
     </li>
     <li>
-      <a href="https://github.com/Cloud-Xero">
+      <a rel="prefetch" href="https://github.com/">
         <Icon name="fa-brands:github" role="img" aria-label="Twitter" />
       </a>
     </li>
   </ul>
-  &copy; {today.getFullYear()} Cloud-Xero. All rights reserved.
 </footer>
-<style>
-  footer {
-    padding: 25px;
-    text-align: center;
-  }
-</style>

@@ -1,30 +1,17 @@
 ---
-import HeaderLink from "@components/HeaderLink.astro";
-import { siteMeta } from "@lib/constants";
-const { SITE_TITLE } = siteMeta;
 ---
 
 <header>
-  <h2>
-    {SITE_TITLE}
-  </h2>
   <nav>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
-      Twitter
-    </HeaderLink>
-    <HeaderLink href="https://github.com/Cloud-Xero" target="_blank">
-      GitHub
-    </HeaderLink>
+    <a rel="prefetch" href="/">
+      <img src="/logo.svg" alt="" width="28" height="28" />
+      H A C K L O G .
+    </a>
+    <ul>
+      <li><a rel="prefetch" href="/blog/category/javascript">Frontend</a></li>
+      <li><a rel="prefetch" href="/blog/category/python">Backend</a></li>
+      <li><a rel="prefetch" href="/blog/category/devops">DevOps</a></li>
+      <li><a rel="prefetch" href="/blog">Blog</a></li>
+    </ul>
   </nav>
 </header>
-<style>
-  header {
-    margin: 0em 0 2em;
-  }
-  h2 {
-    margin: 0.5em 0;
-  }
-</style>
