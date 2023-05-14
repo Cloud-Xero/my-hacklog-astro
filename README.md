@@ -45,3 +45,16 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Reference
+
+- ESLint
+
+  - https://www.xeraph.dev/es/eslint-prettier/
+  - https://github.com/ota-meshi/eslint-plugin-astro
+
+- Prettier
+
+  - https://github.com/withastro/prettier-plugin-astro/tree/main
+
+-
