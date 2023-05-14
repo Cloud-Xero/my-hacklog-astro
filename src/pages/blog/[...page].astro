@@ -9,7 +9,7 @@ import { compareDesc } from "date-fns";
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const blogPosts = await getCollection("blog");
   const sortedBlogPosts = blogPosts.sort((a, b) =>
-    compareDesc(a.data.pubDate as Date, b.data.pubDate)
+    compareDesc(a.data.pubDate as Date, b.data.pubDate),
   );
   return paginate(sortedBlogPosts, { pageSize: 6 });
 }
@@ -48,5 +48,5 @@ type PostData = {
     }
   </div>
 
-  <Pagination prev={prev} next={next} />
+  <Pagination {prev} {next} />
 </Layout>

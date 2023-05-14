@@ -14,15 +14,13 @@ import imgToPicture from "@lib/imgToPicture";
 
 export async function getStaticPaths({}) {
   const blogPosts = await getCollection("blog");
-  const sortedBlogPosts = blogPosts.sort((a, b) =>
-    compareDesc(a.data.pubDate, b.data.pubDate)
-  );
+  const sortedBlogPosts = blogPosts.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate));
 
   const numberOfPosts = blogPosts.length;
 
-  return sortedBlogPosts.map((post) => {
+  return sortedBlogPosts.map(post => {
     const { slug } = post;
-    const currentPage = sortedBlogPosts.findIndex((post) => post.slug === slug);
+    const currentPage = sortedBlogPosts.findIndex(post => post.slug === slug);
 
     // 古い記事へ → インデックス増
     const prev =
@@ -56,14 +54,12 @@ const {
 const pubDateISO = formatISO(pubDate);
 const pubDateJA = format(pubDate, "yyyy年MM月dd日");
 
-const html = import.meta.env.PROD
-  ? markdownToHtml.default(body)
-  : markdownToHtml(body);
+const html = import.meta.env.PROD ? markdownToHtml.default(body) : markdownToHtml(body);
 
 const convertedHTML = imgToPicture(html);
 ---
 
-<Layout pageTitle={title} description={description} pageImg={image}>
+<Layout pageTitle={title} {description} pageImg={image}>
   <article>
     <Custompicture src={image} alt="" />
     <h1>{title}</h1>
@@ -76,7 +72,7 @@ const convertedHTML = imgToPicture(html);
         {
           category.map((categorySlug: string) => {
             const categoryName = categories.find(
-              (cat) => cat.categorySlug === categorySlug
+              cat => cat.categorySlug === categorySlug,
             )?.categoryName;
             return (
               <a rel="prefetch" href={`/blog/category/${categorySlug}`}>
