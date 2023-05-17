@@ -1,16 +1,15 @@
-import { unified } from "unified";
+import { getPicture } from "@astrojs/image";
+import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
+import type { OutputFormat } from "@astrojs/image/dist/loaders";
+import type { Element as HastElement, ElementContent,Root } from "hast";
+import { h } from "hastscript";
+import type { HProperties } from "hastscript/lib/core";
+import { getPlaiceholder } from "plaiceholder";
 import rehypeParse from "rehype-parse";
 import rehypeStringify from "rehype-stringify";
+import { unified } from "unified";
 import { visit } from "unist-util-visit";
-import { h } from "hastscript";
-import type { Element as HastElement, Root, ElementContent } from "hast";
-
-import { getPicture } from "@astrojs/image";
-import { getPlaiceholder } from "plaiceholder";
 import type { VFileCompatible } from "vfile";
-import type { OutputFormat } from "@astrojs/image/dist/loaders";
-import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
-import type { HProperties } from "hastscript/lib/core";
 
 interface NodeDetails {
   node: HastElement;
