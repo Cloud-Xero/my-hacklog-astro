@@ -1,0 +1,85 @@
+---
+import "@styles/config.css";
+import "@styles/default.css";
+import "@styles/layout.css";
+
+import Meta from "@components/meta.astro";
+import Container from "@components/container.astro";
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+import { compareDesc } from "date-fns";
+
+const props = Astro.props;
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const blogPosts = await getCollection("blog");
+  const sortedBlogPosts = blogPosts.sort((a, b) => {
+    compareDesc(a.data.pubDate as Date, b.data.pubDate);
+  });
+  console.log(paginate(sortedBlogPosts, { pageSize: 20 }));
+  return paginate(sortedBlogPosts, { pageSize: 20 });
+};
+
+// const {
+//   page: {
+//     data,
+//     url: { prev, next },
+//   },
+// } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <Meta {...props} />
+  </head>
+  <body>
+    <Container maxWidth="900px">
+      <header class="navbar mt-10 bg-base-100">
+        <a class="btn-ghost btn text-xl normal-case">daisyUI</a>
+      </header>
+      <div class="flex flex-row">
+        <div class="basis-1/7">
+          <div class="">
+            <ul class="w-30 menu bg-base-100">
+              <li class="mx-0"><a class="no-underline">Home</a></li>
+              <li><a class="no-underline">GitHub</a></li>
+              <li><a class="no-underline">Contanct</a></li>
+              <div class="divider my-5 px-3 text-xs">Blog</div>
+              <li><a class="no-underline">Frontend</a></li>
+              <li><a class="no-underline">Backend</a></li>
+              <li><a class="no-underline">DevOps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="basis-4/7 pl-10">
+          <div class="my-4">
+            <a href="#" class="cursor-pointer no-underline">
+              {}
+              <div class="pb-1 text-base">New message!</div>
+              <div class="text-xs">You have 1 unread message</div>
+            </a>
+          </div>
+          <div class="my-4">
+            <a href="#" class="cursor-pointer no-underline">
+              <div class="pb-1 text-base">New message!</div>
+              <div class="text-xs">You have 1 unread message</div>
+            </a>
+          </div>
+          <div class="my-4">
+            <a href="#" class="cursor-pointer no-underline">
+              <div class="pb-1 text-base">New message!</div>
+              <div class="text-xs">You have 1 unread message</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+    <div class="basis-1/5"></div>
+
+    <footer class="footer footer-center p-4 text-base-content">
+      <div>
+        <p class="text-xs">Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+      </div>
+    </footer>
+  </body>
+</html>
