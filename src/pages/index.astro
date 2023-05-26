@@ -1,11 +1,63 @@
 ---
-import Layout from "@layouts/layout.astro";
+import "@styles/config.css";
+import "@styles/default.css";
+import "@styles/layout.css";
+
+import Layout from "@layouts/Layout.astro";
+import Sidebar from "@components/Sidebar.astro";
+// import Pagination from "@components/Pagination.astro";
+
+// microCMS呼び出し
+import { Blog, getBlogs } from "@lib/microcms";
+import { format, parseISO } from "date-fns";
+// import type { GetStaticPathsOptions } from "astro";
+
+// updatedAt は下書きの更新も含まれるため、下書きを考慮しない revisedAt を使用
+const response = await getBlogs({
+  fields: ["id", "title", "revisedAt"],
+});
+
+console.log(response.contents);
+
+// 記事を降順に並び替え
+const sortedBlog = response.contents.sort(
+  (a: Blog, b: Blog) => new Date(b.revisedAt).getTime() - new Date(a.revisedAt).getTime(),
+);
+console.log(`sortedBlog`);
+
+// const a = Astro.props;
+// console.log(a);
+
+// const {
+//   page: {
+//     data,
+//     url: { prev, next },
+//   },
+// } = Astro.props;
+
+// console.log(prev, next);
+
+// ISO 8601形式の日付文字列を変換
+const formattedDate = (ISO: string): string => format(parseISO(ISO), "yyyy-MM-dd HH:mm");
 ---
 
 <Layout>
-  <h1
-    class="bg-gradient-to-r from-yellow-400 to-rose-500 bg-clip-text text-8xl font-bold leading-normal text-transparent"
-  >
-    H A C K L O G .
-  </h1>
+  <div class="flex flex-row">
+    <div class="basis-1/7">
+      <Sidebar />
+    </div>
+    <div class="basis-4/7 pl-10">
+      {
+        sortedBlog.map((content: any) => (
+          <div class="my-4">
+            <a href={`/${content.id}`} class="cursor-pointer no-underline">
+              <div class="pb-1 text-base">{content.title}</div>
+              <div class="text-xs">{formattedDate(content.revisedAt)}</div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <!-- <Pagination /> -->
+  </div>
 </Layout>
