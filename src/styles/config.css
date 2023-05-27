@@ -1,5 +1,5 @@
-/* カスケードレイヤー */
-@layer default, layout, theme;
+/* カスケードレイヤー
+@layer default, layout, theme; */
 
 /* tailwind CSS */
 @tailwind base;
